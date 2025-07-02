@@ -9,6 +9,7 @@ config.initial_rows = 40
 config.font_size = 13
 config.color_scheme = 'Atom'
 config.font = wezterm.font 'JetBrains Mono'
+config.window_background_opacity = 0.7
 
 -- ssh
 local ssh_target = "mbdtf"
