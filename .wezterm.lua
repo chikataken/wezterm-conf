@@ -11,8 +11,9 @@ config.initial_cols = 100
 config.initial_rows = 40
 
 -- or, changing the font size and color scheme.
-config.font_size = 12
+config.font_size = 13
 config.color_scheme = 'Atom'
+config.font = wezterm.font 'JetBrains Mono'
 
 -- Finally, return the configuration to wezterm:
 return config
