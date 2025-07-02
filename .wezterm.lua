@@ -10,17 +10,11 @@ config.font_size = 13
 config.color_scheme = 'Atom'
 config.font = wezterm.font 'JetBrains Mono'
 
+-- ssh
+local ssh_target = "mbdtf"
+config.default_prog = { "/usr/bin/ssh", ssh_target }
 
--- dynamic status bar
-wezterm.on("update-status", function(window, pane)
-  local battery = wezterm.battery_info()[1]
-  local pct     = math.floor(battery.state_of_charge * 100)
-  local time    = wezterm.strftime("%H:%M")
-  window:set_right_status(
-    wezterm.format {
-      { Text = string.format("🔋%d%%  ⌚%s", pct, time) },
-    }
-  )
-end)
+return config
+
 
 return config
