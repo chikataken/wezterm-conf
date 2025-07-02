@@ -9,10 +9,19 @@ config.initial_rows = 40
 config.font_size = 13
 config.color_scheme = 'Atom'
 config.font = wezterm.font 'JetBrains Mono'
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.9
 
 -- ssh
+config.default_prog = { "/bin/zsh", "-l" }
 local ssh_target = "mbdtf"
-config.default_prog = { "/usr/bin/ssh", ssh_target }
+config.launch_menu = {
+  {
+    label = "SSH → " .. ssh_target,
+    args  = { "/usr/bin/ssh", ssh_target },
+    cwd   = wezterm.home_dir,
+    domain = "CurrentPaneDomain",
+  },
+}
+config.default_gui_startup_args = { "LaunchMenuEntry", "SSH → "..ssh_target }
 
 return config
