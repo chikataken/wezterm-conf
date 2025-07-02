@@ -1,19 +1,26 @@
--- Pull in the wezterm API
 local wezterm = require 'wezterm'
-
--- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices.
-
--- For example, changing the initial geometry for new windows:
+-- new window
 config.initial_cols = 100
 config.initial_rows = 40
 
--- or, changing the font size and color scheme.
+-- font & color
 config.font_size = 13
 config.color_scheme = 'Atom'
 config.font = wezterm.font 'JetBrains Mono'
 
--- Finally, return the configuration to wezterm:
+
+-- dynamic status bar
+wezterm.on("update-status", function(window, pane)
+  local battery = wezterm.battery_info()[1]
+  local pct     = math.floor(battery.state_of_charge * 100)
+  local time    = wezterm.strftime("%H:%M")
+  window:set_right_status(
+    wezterm.format {
+      { Text = string.format("🔋%d%%  ⌚%s", pct, time) },
+    }
+  )
+end)
+
 return config
