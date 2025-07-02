@@ -15,6 +15,3 @@ local ssh_target = "mbdtf"
 config.default_prog = { "/usr/bin/ssh", ssh_target }
 
 return config
-
-
-return config
